@@ -4,10 +4,18 @@ import { Container, ButtonText } from './styles';
 
 import { ContainerProps } from './types';
 
-const Button: React.FC<ContainerProps> = ({ children, ...props }) => {
+const Button: React.FC<ContainerProps> = ({
+  children,
+  icon: Icon,
+  iconShowLoading,
+  ...props
+}) => {
   return (
     <Container {...props}>
-      <ButtonText buttonStyle={props.buttonStyle}>{children}</ButtonText>
+      {iconShowLoading && <Icon />}
+      {children && (
+        <ButtonText buttonStyle={props.buttonStyle}>{children}</ButtonText>
+      )}
     </Container>
   );
 };

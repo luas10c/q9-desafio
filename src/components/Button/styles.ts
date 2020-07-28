@@ -15,6 +15,18 @@ export const Container = styled.TouchableOpacity<ContainerProps>`
     `
     background-color: #f97f51;
   `};
+  ${({ buttonStyle, disabled }) =>
+    buttonStyle === 'default' &&
+    disabled &&
+    `
+    background-color: #f2eaea;
+  `};
+  ${({ buttonStyle, disabled }) =>
+    buttonStyle === 'primary' &&
+    disabled &&
+    `
+    background-color: #ea774d;
+  `};
   width: 210px;
   height: 54px;
   border-radius: 4px;
