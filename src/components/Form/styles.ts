@@ -26,6 +26,9 @@ export const LabelContainer = styled.Text`
 export const TextFieldContainer = styled.TextInput`
   background-color: transparent;
   border: 1px solid #d3d3d3;
+  font-weight: bold;
+  font-size: 16px;
+  color: #414141;
   width: 100%;
   height: 54px;
   padding: 0 18px;
