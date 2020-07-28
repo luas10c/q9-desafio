@@ -18,7 +18,7 @@ const Home = () => {
           mas se você já é um de nossos usuários aos prosseguir você também
           conseguirá acessar sua conta usando seu email de cadastro.
         </Info>
-        <Button>Prosseguir</Button>
+        <Button buttonStyle="default">Prosseguir</Button>
       </Content>
     </Container>
   );
