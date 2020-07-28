@@ -22,7 +22,7 @@ export const Info = styled.Text`
   font-weight: bold;
   font-size: 16px;
   color: #414141;
-  padding: 20px;
+  padding: 30px 20px;
   margin: 36px 0;
   background-color: #ffffff;
   border-radius: 4px;
