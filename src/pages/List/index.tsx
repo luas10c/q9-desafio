@@ -41,6 +41,11 @@ const List: React.FC<any> = () => {
   };
 
   const handleChangeItem = (value: string) => {
+    if (value === 'chihuahua' && breed !== '') {
+      setBreed(value);
+      return;
+    }
+
     if (value !== breed) {
       setBreed(value);
     }
