@@ -30,7 +30,7 @@ const List: React.FC<ListProps> = ({ items, onChangeItem, ...props }) => {
       horizontal
       {...props}>
       {items.map((item, index) =>
-        item.name === breed ? (
+        item.name === breed || (!breed && index === 0) ? (
           <Item
             key={index}
             label={item.label}
