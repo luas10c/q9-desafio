@@ -19,4 +19,5 @@ export interface ItemProps extends TouchableOpacityProps {
   label?: string;
   image?: ImageSourcePropType;
   onChangeItem: () => void;
+  isActive?: boolean;
 }

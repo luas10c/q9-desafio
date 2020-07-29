@@ -1,18 +1,29 @@
 import styled from 'styled-components/native';
 
+import { ItemProps } from './types';
+
 export const Container = styled.View`
-  height: 117px;
-  margin-left: 20px;
+  background-color: #f97f51;
 `;
 
-export const ListContainer = styled.ScrollView``;
+export const ListContainer = styled.ScrollView`
+  height: 117px;
+  padding-left: 20px;
+`;
 
-export const ItemContainer = styled.TouchableOpacity`
+export const ItemContainer = styled.TouchableOpacity<ItemProps>`
   align-items: center;
   justify-content: center;
   width: 130px;
-  height: 98px;
+  height: 104px;
   margin-right: 20px;
+  ${({ isActive }) =>
+    isActive &&
+    `
+    background-color: rgba(255, 255, 255, .2);
+    border: 1px solid rgba(255, 255, 255, .3);
+    padding: 9px;
+  `}
 `;
 
 export const ItemImage = styled.Image`
@@ -23,5 +34,6 @@ export const ItemImage = styled.Image`
 export const ItemLabel = styled.Text`
   font-weight: bold;
   font-size: 16px;
+  color: #ffffff;
   padding-top: 9px;
 `;

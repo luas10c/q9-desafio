@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 
 import { ItemContainer, ItemImage, ItemLabel } from './styles';
 
@@ -25,4 +25,4 @@ const Item: React.FC<ItemProps> = ({
   );
 };
 
-export default React.memo(Item);
+export default Item;
