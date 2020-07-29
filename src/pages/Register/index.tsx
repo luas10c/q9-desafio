@@ -82,7 +82,7 @@ const Register: React.FC = () => {
             <Button
               buttonStyle="primary"
               onPress={(event: any) => handleSubmit(event)}
-              icon={() => <Spinner />}
+              icon={() => <Spinner size="large" color="#FFFFFF" />}
               disabled={loading}
               iconShowLoading={loading}>
               {!loading && <> Prosseguir</>}
