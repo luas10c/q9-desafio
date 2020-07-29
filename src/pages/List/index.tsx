@@ -40,12 +40,13 @@ const List: React.FC<any> = () => {
   };
 
   const handleChangeItem = (value: string | undefined) => {
-    setImages([]);
     if (!breed && value !== 'chihuahua') {
+      setImages([]);
       setBreed(value);
     }
 
     if (breed && value !== breed) {
+      setImages([]);
       setBreed(value);
     }
   };
