@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { FlatList, Image, TouchableHighlight } from 'react-native';
 
 import { Container } from './styles';
@@ -6,10 +6,6 @@ import { Container } from './styles';
 import { GalleryProps } from './types';
 
 const Gallery: React.FC<GalleryProps> = ({ images, ...props }) => {
-  useEffect(() => {
-    console.log(`Foram carregadas ${images.length} images`);
-  }, []);
-
   return (
     <Container>
       <FlatList
@@ -41,7 +37,6 @@ const Gallery: React.FC<GalleryProps> = ({ images, ...props }) => {
                   width: 170,
                   height: 170
                 }}
-                onLoad={() => 'carregado'}
               />
             </TouchableHighlight>
           ) : (
@@ -55,7 +50,6 @@ const Gallery: React.FC<GalleryProps> = ({ images, ...props }) => {
                   width: 170,
                   height: 170
                 }}
-                onLoad={() => 'carregado'}
               />
             </TouchableHighlight>
           )
