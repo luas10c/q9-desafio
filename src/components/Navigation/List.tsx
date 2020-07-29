@@ -7,7 +7,7 @@ import { ListContainer } from './styles';
 import { ListProps } from './types';
 
 const List: React.FC<ListProps> = ({ items, onChangeItem, ...props }) => {
-  const [breed, setBreed] = useState('');
+  const [breed, setBreed] = useState<string | undefined>();
 
   useEffect(() => {
     handleChangeItem();
@@ -18,7 +18,9 @@ const List: React.FC<ListProps> = ({ items, onChangeItem, ...props }) => {
   }, [breed]);
 
   const handleChangeItem = useCallback(() => {
-    onChangeItem(breed);
+    if (breed) {
+      onChangeItem(breed);
+    }
   }, [breed]);
 
   return (

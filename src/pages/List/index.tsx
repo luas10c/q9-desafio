@@ -11,7 +11,7 @@ import navigationItems from './navigationItems';
 import { Container, Content, Footer } from './styles';
 
 const List: React.FC<any> = () => {
-  const [breed, setBreed] = useState('');
+  const [breed, setBreed] = useState<string | undefined>();
   const [images, setImages] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -24,10 +24,9 @@ const List: React.FC<any> = () => {
   }, [breed]);
 
   const fetchImagesByBreed = async () => {
-    setImages([]);
     try {
       setIsLoading(true);
-      const { data } = await api.get(`list${breed && `?breed=${breed}`}`, {
+      const { data } = await api.get(breed ? `list?breed=${breed}` : 'list', {
         headers: {
           Authorization:
             'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJmMDUxNTFiMC1iMzUyLTRiZjYtOTc0Ni0yMDAyOWMyMjI5YTciLCJzdWIiOiI1ZjE3NjVjNGM4ZWExODAwMDQyZTJhMTciLCJpYXQiOjE1OTUzNjg5MDAsImV4cCI6MTU5NjY2NDkwMH0.xFi9tmMlOMfYOLXIsqcfWFHwtzNw2QhVm2MF7U-05Lc'
@@ -40,13 +39,13 @@ const List: React.FC<any> = () => {
     }
   };
 
-  const handleChangeItem = (value: string) => {
-    if (value === 'chihuahua' && breed !== '') {
+  const handleChangeItem = (value: string | undefined) => {
+    setImages([]);
+    if (!breed && value !== 'chihuahua') {
       setBreed(value);
-      return;
     }
 
-    if (value !== breed) {
+    if (breed && value !== breed) {
       setBreed(value);
     }
   };

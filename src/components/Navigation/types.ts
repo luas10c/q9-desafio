@@ -7,12 +7,12 @@ import {
 
 export interface NavigationProps extends ViewProps {
   items: any[];
-  onChangeItem: (value: string) => void;
+  onChangeItem: (value: string | undefined) => void;
 }
 
 export interface ListProps extends ScrollViewProps {
   items: any[];
-  onChangeItem: (value: string) => void;
+  onChangeItem: (value: string | undefined) => void;
 }
 
 export interface ItemProps extends TouchableOpacityProps {
