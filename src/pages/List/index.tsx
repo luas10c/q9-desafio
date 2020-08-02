@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
+import AsyncStorage from '@react-native-community/async-storage';
 import { StatusBar } from 'expo-status-bar';
 import api from '~/services/api';
 
@@ -11,31 +12,44 @@ import navigationItems from './navigationItems';
 import { Container, Content, Footer } from './styles';
 
 const List: React.FC<any> = () => {
+  const [token, setToken] = useState<string | null>();
   const [breed, setBreed] = useState<string | undefined>();
   const [images, setImages] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    fetchTokenOnAsyncStorage();
     fetchImagesByBreed();
 
     return () => {
+      fetchTokenOnAsyncStorage();
       fetchImagesByBreed();
     };
   }, [breed]);
+
+  const fetchTokenOnAsyncStorage = async () => {
+    try {
+      const storedToken = await AsyncStorage.getItem('@token');
+      setToken(storedToken);
+    } catch (error) {
+      //
+      // console.log(error);
+    }
+  };
 
   const fetchImagesByBreed = async () => {
     try {
       setIsLoading(true);
       const { data } = await api.get(breed ? `list?breed=${breed}` : 'list', {
         headers: {
-          Authorization:
-            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJmMDUxNTFiMC1iMzUyLTRiZjYtOTc0Ni0yMDAyOWMyMjI5YTciLCJzdWIiOiI1ZjE3NjVjNGM4ZWExODAwMDQyZTJhMTciLCJpYXQiOjE1OTUzNjg5MDAsImV4cCI6MTU5NjY2NDkwMH0.xFi9tmMlOMfYOLXIsqcfWFHwtzNw2QhVm2MF7U-05Lc'
+          Authorization: token
         }
       });
       setImages(data.list);
       setIsLoading(false);
     } catch (error) {
       //
+      // console.log(error);
     }
   };
 
