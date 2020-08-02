@@ -4,6 +4,7 @@ import { ItemProps } from './types';
 
 export const Container = styled.View`
   background-color: #f97f51;
+  align-items: center;
 `;
 
 export const ListContainer = styled.ScrollView`
