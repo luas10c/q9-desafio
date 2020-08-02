@@ -22,7 +22,7 @@ import {
 } from './styles';
 
 const Register: React.FC = () => {
-  const { loading, handleLogin } = useContext(AuthContext);
+  const { loading, isAuthenticated, handleLogin } = useContext(AuthContext);
   const { navigate } = useNavigation();
   const {
     errors,
@@ -44,11 +44,14 @@ const Register: React.FC = () => {
     }
   });
 
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate('List');
+    }
+  }, [isAuthenticated]);
+
   return (
     <Container>
-      <AuthContext.Consumer>
-        {({ isAuthenticated }) => isAuthenticated && navigate('List')}
-      </AuthContext.Consumer>
       <Header>
         <Wrapper>
           <BackButton onPress={() => {}}>

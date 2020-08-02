@@ -1,26 +1,39 @@
-import React, { createContext, Context, useState } from 'react';
+import React, {
+  createContext,
+  useState,
+  Context,
+  ChildContextProvider
+} from 'react';
+import AsyncStorage from '@react-native-community/async-storage';
+import api from '~/services/api';
 
 import { AuthContextProps } from './types';
 
-export const AuthContext: Context<AuthContextProps> = createContext({
-  handleLogin: () => {}
+export const AuthContext = createContext({
+  loading: false,
+  isAuthenticated: false,
+  handleLogin: (email: string) => {}
 });
 
-const AuthProvider: React.FC = ({ children }) => {
+const AuthProvider: React.FC<AuthContextProps> = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const handleLogin = async (email: string) => {
-    setLoading(true);
-    setTimeout(() => {
+    try {
+      setLoading(true);
+      const { data } = await api.post('register', { email });
+      AsyncStorage.setItem('@token', data.user.token);
       setIsAuthenticated(true);
       setLoading(false);
-    }, 3000);
-    return true;
+    } catch (error) {
+      //
+      // console.log(error);
+    }
   };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, loading, handleLogin }}>
+    <AuthContext.Provider value={{ loading, isAuthenticated, handleLogin }}>
       {children}
     </AuthContext.Provider>
   );
